@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Documents",
+    "fields": [
+      { "name": "id", "type": "string", "primary": true },
+      { "name": "title", "type": "string" },
+      { "name": "text", "type": "string" },
+      { "name": "label", "type": "int", "default": 0 },
+      { "name": "predicted", "type": "int", "default": 0 },
+      { "name": "distance", "type": "float", "default": 0.0 }
+    ],
+    "keys": [
+      { "field": "text", "type": "text" }
+    ]
+  }
+]

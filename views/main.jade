@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .row(style="padding-bottom:20px")
+    // Search Bar
+    .col-md-6
+      div(class="input-group pull-left")
+        input(id="search-field" type="text" class="form-control" placeholder="Search for...")
+        span.input-group-btn
+          button(id="search-button" class="btn btn-primary" type="button") Search
+    block control
+  // end of control row
+  if data.length
+    .row
+      p= 'Showing ' + start + ' -  ' + end + ' of ' + total
+  include ./table.jade

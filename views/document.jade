@@ -1,0 +1,14 @@
+extends layout
+
+include ./label.jade
+
+block content
+  h1 #{doc.title}
+  // The Button
+  .row
+    +class-label-control(doc)
+  // The Text
+  .row
+    each par in doc.text
+      p= par
+

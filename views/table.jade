@@ -1,0 +1,61 @@
+include ./label.jade
+
+mixin table-row(entry)
+  td
+    a(href="/document/#{entry.id}") #{entry.id}
+  td #{entry.title}
+  td
+    button(type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-#{entry.id}") View
+    div(class="modal fade" id="modal-#{entry.id}" tabindex="-1" role="dialog" aria-labelledby="modal-label-#{entry.id}")
+      div(class="modal-dialog" role="document")
+        div(class="modal-content")
+          div(class="modal-header")
+            button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") &times;
+            h4(class="modal-title" id="modal-label-#{entry.id}") #{entry.title}
+          div(class="modal-body")
+            each par in entry.text
+              p= par
+          div(class="modal-footer")
+            button(type="button" class="btn btn-default" data-dismiss="modal") Close
+  td
+    +class-label-control(entry)
+
+if data.length
+  .row
+    table.table.table-condensed
+      thead
+        tr
+          th.col-sm-1 id
+          th.col-sm-6 title
+          th.col-sm-1 view
+          th.col-sm-3 label
+      // end of table head
+      each entry in data
+        if entry.predicted === -2
+          tr.warning
+            +table-row(entry)
+        else if !entry.predicted
+          tr
+            +table-row(entry)
+        else if entry.predicted > 0
+          tr.success
+            +table-row(entry)
+        else if entry.predicted < 0
+          tr.danger
+            +table-row(entry)
+
+
+   // end of table
+  .row
+    ul(id="paginator" class="pagination-sm")
+    script.
+      var uri = new URI(window.location.href)
+      uri.search(function (data) { data.page =  'number' })
+
+      $('#paginator').twbsPagination({
+        totalPages: #{pages},
+        visiblePages: 14,
+        hrefVariable: 'number',
+        href: uri.toString()
+      })
