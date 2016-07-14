@@ -20,10 +20,15 @@ router.get('/:id', function (req, res, next) {
 router.post('/:id', function (req, res) {
   var Documents = req.app.get('documents')
   var did = req.params.id
+
+  // record label
+  var label = parseInt(req.body.label)
+  console.log('Set label: ' + label)
   var record = Documents.recordByName(did)
-  record.label = parseInt(req.body.label)
-  record.predicted = parseInt(req.body.label)
+  record.label = label
+  record.predicted = label
   record.distance = 0
+
   var autorank = req.app.get('autorank')
   var saver = req.app.get('saver')
 
