@@ -75,8 +75,7 @@ router.get('/', function (req, res, next) {
     pages: pages,
     start: start,
     end: end,
-    filter: classFilter,
-    autorank: req.app.get('autorank')
+    filter: classFilter
   }
   res.render('labeled', vars)
 })

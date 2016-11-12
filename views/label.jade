@@ -1,14 +1,22 @@
 mixin class-label-control(entry)
     div(class="btn-group class-labels" data-toggle="buttons")
       
-      if entry.label === 1
+      if entry.label === 2
         label(class="btn btn-sm btn-success active")
-          input(type="radio" name="options" data-label="1" data-id="#{entry.id}" autocomplete="off" checked="checked")
+          input(type="radio" name="options" data-label="2" data-id="#{entry.id}" autocomplete="off" checked="checked")
           | Positive
       else
         label(class="btn btn-sm btn-success")
-          input(type="radio" name="options" data-label="1" data-id="#{entry.id}" autocomplete="off")
+          input(type="radio" name="options" data-label="2" data-id="#{entry.id}" autocomplete="off")
           | Positive
+      if entry.label === 1
+        label(class="btn btn-sm btn-info active")
+          input(type="radio" name="options" data-label="1" data-id="#{entry.id}" autocomplete="off" checked="checked")
+          | Mixed
+      else
+        label(class="btn btn-sm btn-info")
+          input(type="radio" name="options" data-label="1" data-id="#{entry.id}" autocomplete="off")
+          | Mixed
       if entry.label === 0
         label(class="btn btn-sm btn-default active")
           input(type="radio" name="options" data-label="0" data-id="#{entry.id}" autocomplete="off" checked="checked")

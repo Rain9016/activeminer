@@ -76,12 +76,12 @@ $('.btn-group.class-labels :input').change(function () {
     data: {label: label},
     timeout: 40000,
     success: function (data) {
-      console.log(data)
-      if (data.reload) {
-        window.location.reload()
-      }
+      window.location.reload()
     },
-    error: function (x, t, m) {}
+    error: function (x, t, m) {
+      console.log('FAIL')
+      console.log(m)
+    }
   })
 })
 

@@ -6,7 +6,7 @@ var fs = require('fs')
 var base = new qm.Base({mode: 'open'})
 
 // Set the filename
-var filePath = './sandbox/export.jsonld'
+var filePath = './sandbox/export2.jsonld'
 
 // Get the store
 var Documents = base.store('Documents')

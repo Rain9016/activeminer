@@ -2,10 +2,24 @@
 var qm = require('qminer')
 
 // create db
-var base = new qm.Base({ mode: 'createClean', schemaPath: 'documents.def' })
+var base = new qm.Base({ mode: 'createClean', schema: [
+    {
+      'name': 'Documents',
+      'fields': [
+        { 'name': 'id', 'type': 'string', 'primary': true },
+        { 'name': 'title', 'type': 'string' },
+        { 'name': 'text', 'type': 'string' },
+        { 'name': 'previous_label', 'type': 'int', 'default': 0 },
+        { 'name': 'label', 'type': 'int', 'default': 0 },
+      ],
+      'keys': [
+        { 'field': 'text', 'type': 'text' }
+      ]
+    }
+] })
 
 // Set the filename
-var filePath = './sandbox/documents.jsonld'
+var filePath = './sandbox/export2.jsonld'
 
 // Get the store
 var Documents = base.store('Documents')

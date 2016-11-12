@@ -53,7 +53,6 @@ router.get('/', function (req, res, next) {
     pages: pages,
     start: start,
     end: end,
-    autorank: req.app.get('autorank')
   }
   res.render('index', vars)
 })

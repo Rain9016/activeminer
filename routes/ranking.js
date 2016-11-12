@@ -28,9 +28,15 @@ router.get('/', function (req, res, next) {
   // query
   var q = req.query.q || null
 
-  // ## Active Learner
-  var learner = req.app.get('learner')
-  results = learner.getRanking(certainFirst, classFilter)
+  // ## Get documents (Unlabeled)
+  results = req.app.get('documents').allRecords
+  results = results.filter(function (r) {
+    return r.label === 0
+  })
+  // sort by id
+  results.sort(function (rec1, rec2) {
+    return rec1.id < rec2.id
+  })
 
   // ## Query
   if (q !== null) {
@@ -47,6 +53,7 @@ router.get('/', function (req, res, next) {
   }
 
   if (results !== null) {
+    results = results.toJSON().records
     // ## Pagination
     total = results.length
     pages = Math.ceil(total / per_page)
@@ -84,11 +91,7 @@ router.get('/', function (req, res, next) {
 })
 
 router.post('/', function (req, res) {
-  // re-rank
-  var learner = req.app.get('learner')
-  learner.reRank()
-
-  res.status(200).json(null)
+  res.status(200).json({status: 200})
 })
 
 module.exports = router

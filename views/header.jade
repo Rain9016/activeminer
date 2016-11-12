@@ -37,24 +37,7 @@ mixin navbar(active)
           else
             li
               a(href="/data") Export
-        ul(class="nav navbar-nav navbar-right")
-          li
-            div(class="btn-group btn-group btn-group-lg" style="padding-right: 10px;" data-toggle="buttons" id="autoranking")
-              if !autorank
-                label(class="btn btn-default active") Manual
-                  input(type="radio" name="options" data-label=0 autocomplete="off")
-              else
-                label(class="btn btn-default") Manual
-                  input(type="radio" name="options" data-label=0 autocomplete="off")
-              if autorank
-                label(class="btn btn-default active") AutoRank
-                  input(type="radio" name="options" data-label=1 autocomplete="off")
-              else
-                label(class="btn btn-default") AutoRank
-                  input(type="radio" name="options" data-label=1 autocomplete="off")
-          li
-            input(class="btn btn-primary btn-lg" type="button" value="ReRank" id="rerank" data-loading-text="Ranking...")
-      // end of nav menu
+     // end of nav menu
     // end of container
   // end of nav
 

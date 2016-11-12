@@ -6,7 +6,6 @@ var bodyParser = require('body-parser')
 var process = require('process')
 var qm = require('qminer')
 var ON_DEATH = require('death')
-var ActiveLearner = require('./lib/activelearner')
 var SaveCheckPoint = require('./lib/savecheckpoint')
 
 var routes = require('./routes/index')
@@ -23,23 +22,7 @@ var app = express()
 var base = new qm.Base({mode: 'open'})
 app.set('base', base)
 var Documents = base.store('Documents')
-var recSet = Documents.allRecords
 app.set('documents', Documents)
-
-// build Active Learner
-var svmParams = {
-  c: 1.0,
-  j: 1.2,
-  maxIterations: 1000,
-  maxTime: 1.0
-}
-var learner = new ActiveLearner(recSet, svmParams)
-var ret = learner.reRank()
-if (ret) {
-  console.log('Built classifier')
-}
-app.set('learner', learner)
-app.set('autorank', true) // default to auto ranking
 
 // Checkpoints
 var saver = new SaveCheckPoint(Documents)

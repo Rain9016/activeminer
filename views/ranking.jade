@@ -4,11 +4,17 @@ block control
     // Class Filter
     .col
       div(class="btn-group class-selector pull-left" data-toggle="buttons")
-        if filter == 1
+        if filter == 2
           label(class="btn btn-success active") Positive
-            input(type="radio" name="options" data-label="1" autocomplete="off")
+            input(type="radio" name="options" data-label="2" autocomplete="off")
         else
           label(class="btn btn-success") Positive
+            input(type="radio" name="options" data-label="2" autocomplete="off")
+        if filter == 1
+          label(class="btn btn-info active") Mixed
+            input(type="radio" name="options" data-label="1" autocomplete="off")
+        else
+          label(class="btn btn-info") None
             input(type="radio" name="options" data-label="1" autocomplete="off")
         if filter == 0
           label(class="btn btn-default active") None
@@ -22,18 +28,9 @@ block control
         else
           label(class="btn btn-danger") Negative
             input(type="radio" name="options" data-label="-1" autocomplete="off")
-    // Sort Order
-    .col
-      div(class="btn-group sort-selector pull-right" data-toggle="buttons")
-        if !reverse
-          label(class="btn btn-default active") Uncertain First
-            input(type="radio" name="options" data-label=0 autocomplete="off")
+        if filter == -2
+          label(class="btn btn-warning active") Not Related
+            input(type="radio" name="options" data-label="-2" autocomplete="off")
         else
-          label(class="btn btn-default") Uncertain First
-            input(type="radio" name="options" data-label=0 autocomplete="off")
-        if reverse
-          label(class="btn btn-default active") Certain First
-            input(type="radio" name="options" data-label=1 autocomplete="off")
-        else
-          label(class="btn btn-default") Certain First
-            input(type="radio" name="options" data-label=1 autocomplete="off")
+          label(class="btn btn-warning") Not Related
+            input(type="radio" name="options" data-label="-2" autocomplete="off")
